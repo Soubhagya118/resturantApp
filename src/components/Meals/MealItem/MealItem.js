@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classes from './MealItem.module.css'
 import MealItemForm from './MealItemForm';
 
 const MealItem = (props) => {
+  const [cartData,setCartData] = useState();
     const price =`$${props.price.toFixed(2)}`;
+
+    const cartDatafn=(data)=>{
+      props.totalCartfn(data)
+      setCartData(data);
+       
+    }
   return (
     <li  className={classes.meal}>
       <div>
@@ -12,7 +19,8 @@ const MealItem = (props) => {
       <div className={classes.price}>{price}</div>
       </div>
      <div>
-    <MealItemForm/>
+     {/* {console.log(cartData)} */}
+    <MealItemForm cartDatafn={cartDatafn}  name={props.name} description={props.description} price={props.price}/>
      </div>
     </li>
   )

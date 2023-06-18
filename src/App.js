@@ -8,7 +8,9 @@ import CartProvider from './Store/CartProvider';
 
 
 function App() {
-const [CartShown, setCartShown]= useState(false);
+
+  const [totalData,setTotalData] = useState([])
+ const [CartShown, setCartShown]= useState(false);
   const showHandler =()=>{
     setCartShown(true);
   };
@@ -16,14 +18,16 @@ const [CartShown, setCartShown]= useState(false);
   const hideHandler =()=>{
     setCartShown(false);
   }
-
+  const totalCartfn=(d)=>{
+    setTotalData((prevData)=>{return [...prevData,d]})
+  }
 
   return (
     <CartProvider>
-    {CartShown && <Cart onClose ={hideHandler}/>}
-     <Header onShowCart={showHandler} />
+    {CartShown && <Cart onClose ={hideHandler} totalData={totalData}/>}
+     <Header onShowCart={showHandler} totalData={totalData}/>
      <main>
-      <Meals />
+      <Meals totalCartfn={totalCartfn}/>
      </main>
     </CartProvider>
   );

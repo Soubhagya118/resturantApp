@@ -5,12 +5,13 @@ import HeaderCartButton from './HeaderCartButton';
 
 
 const Header = (props) => {
-   
+    //  console.log("header.js",props.totalData.length)
+
   return (
     <>
       <header className={classes.header}>
         <h1>ReactMeals</h1>
-        <HeaderCartButton onClick={props.onShowCart}/>
+        <HeaderCartButton onClick={props.onShowCart} totalData={props.totalData}/>
       </header>
       <div className={classes['main-image']}>
         <img src={mealsImage} alt='A table full of delicious  food'/>
